@@ -1,0 +1,899 @@
+<?php
+// Ensure session_start() is called if you plan to use sessions (e.g., for user login status, cart)
+// session_start();
+include('../includes/conn.php');
+include('../function/comm_fun.php'); // Make sure this file contains getbrand() and getcategories() functions that ECHO <li><a>...</a></li> HTML
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Murliwala</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #7986cb;
+            --light-bg: #f8f9fa;
+            --dark-bg: #0a192f;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+            --text-muted: #6c757d;
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Poppins', sans-serif;
+            --shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+            --shadow-md: 0 .5rem 1rem rgba(0, 0, 0, .15);
+            --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .175);
+            --border-radius: 0.5rem;
+            --border-color: #dee2e6;
+            --navbar-height: 70px;
+            --sidebar-width-lg: 250px;
+            /* --- Sidebar Dark Theme Variables --- */
+            --sidebar-bg-dark: #111;
+            /* Darker black for sidebar */
+            --sidebar-text-light: rgba(255, 255, 255, 0.7);
+            --sidebar-text-hover: white;
+            --sidebar-border-dark: #333;
+            /* Dark border for sidebar */
+            /* --- Sacred Hindu Theme Colors --- */
+            --saffron: rgb(232, 155, 79);
+            /* Sacred saffron color */
+            --deep-red: #CC0000;
+            /* Traditional red for energy */
+            --gold: #FFD700;
+            /* Divine gold for prosperity */
+            --turmeric: #F4C430;
+            /* Auspicious turmeric yellow */
+            --forest-green: rgb(24, 182, 155);
+            /* Nature green for growth */
+            --deep-blue: #00008B;
+            /* Spiritual blue for divinity */
+            --light-bg: rgb(239, 194, 127);
+            /* Soft warm white */
+            --dark-bg: #1a1200;
+            /* Deep brown-black */
+            --text-light: #fff9f0;
+            --text-dark: #331a00;
+            --text-muted: #8a7f70;
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: white;
+            color: var(--text-dark);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: var(--navbar-height);
+            line-height: 1.7;
+        }
+
+        main {
+            flex-grow: 1;
+            /* Ensures main content takes available space */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--saffron) 100%);
+            padding: 0.5rem 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            /* Ensure navbar is above fixed sidebar */
+            height: var(--navbar-height);
+            /* Explicit height */
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-right: 15px;
+        }
+
+        .navbar-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+
+        .brand-subtitle {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            color: var(--text-light);
+        }
+
+        .nav-link {
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+            margin: 0 2px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+            color: white;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+            color: white;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: rgba(26, 35, 126, 0.97);
+            border-radius: var(--border-radius);
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(3px);
+            color: white;
+        }
+
+        .user-dropdown {
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .search-form {
+            position: relative;
+        }
+
+        .search-form .form-control {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 20px;
+            padding-right: 40px;
+            padding-left: 15px;
+            height: 38px;
+            font-size: 0.9rem;
+        }
+
+        .search-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-form .btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0 12px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .search-form .btn:hover {
+            color: white;
+        }
+
+        .search-form .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: none;
+            color: white;
+        }
+
+        .admin-login-btn {
+            padding: 0;
+            background: none;
+            border: none;
+            margin-left: 1rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .admin-login-btn img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .admin-login-btn:hover img {
+            transform: scale(1.1) rotate(5deg);
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+
+
+        #sidebar {
+            /* --- Default styles (Small Screens) --- */
+            background: linear-gradient(135deg, var(--deep-blue) 10%, var(--accent-color) 100%);
+            /* Black background */
+            color: var(--sidebar-text-primary);
+            /* Light text */
+            padding: 1rem;
+            transition: all 0.3s ease;
+            position: static;
+            /* Static by default */
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid var(--sidebar-border-dark);
+            /* Dark border */
+            margin-bottom: 1.5rem;
+            z-index: 1020;
+            /* Below navbar */
+        }
+
+        /* --- Fixed Sidebar (Large Screens) --- */
+        @media (min-width: 992px) {
+            .sidebar-container {
+                flex: 0 0 0;
+                width: 0;
+            }
+
+            #sidebar {
+                position: fixed;
+                top: var(--navbar-height);
+                left: 0;
+                width: var(--sidebar-width-lg);
+                height: calc(100vh - var(--navbar-height));
+                overflow-y: auto;
+                border-right: 1px solid var(--sidebar-border-dark);
+                /* Dark border on right */
+                border-bottom: none;
+                /* No bottom border when fixed */
+                margin-bottom: 0;
+                padding: 1.5rem 1rem;
+            }
+
+            .main-content-area {
+                margin-left: var(--sidebar-width-lg);
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* --- Sidebar Content Styling (Adjusted for Dark BG) --- */
+        #sidebar .accordion-item {
+            background-color: transparent;
+            /* Ensure item background is transparent */
+            border-color: transparent;
+            /* Ensure item border is transparent if any */
+        }
+
+
+
+        #sidebar .accordion-header button {
+            font-size: 1.1rem;
+            font-family: var(--font-primary);
+            color: var(--sidebar-text-hover) !important;
+            /* White text */
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: none;
+            background-color: transparent !important;
+            /* Ensure transparent */
+            box-shadow: none !important;
+            width: 100%;
+            border-bottom: 1px solid var(--sidebar-border-dark);
+            /* Dark separator */
+            transition: background-color 0.2s ease;
+            /* Add transition for hover/focus */
+        }
+
+        #sidebar .accordion-header button:hover,
+        #sidebar .accordion-header button:focus {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            /* Subtle hover/focus */
+        }
+
+        #sidebar .accordion-header button:not(.collapsed) {
+            /* Style when open */
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            /* Subtle highlight */
+            border-bottom-color: var(--accent-color);
+            /* Use accent for open */
+        }
+
+        #sidebar .accordion-header button::after {
+            /* Style accordion icon */
+            filter: brightness(0) invert(1);
+            /* Make arrow white */
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar .accordion-body {
+            padding: 0.5rem 0 0.5rem 1rem !important;
+            /* Removed background-color here as well */
+            border: none !important;
+            /* Remove potential borders from body */
+        }
+
+        #sidebar ul li {
+            margin-bottom: 0.1rem;
+        }
+
+        #sidebar ul li a {
+            text-decoration: none;
+            color: orange;
+            /* Use a more specific color variable if needed */
+            /* Light text for links */
+            font-weight: 400;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease, border-left 0.2s ease;
+            font-size: 0.9rem;
+            font-family: var(--font-secondary);
+            border-left: 3px solid transparent;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Slightly lighter background on hover */
+            color: var(--sidebar-text-hover);
+            /* White text on hover */
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-color);
+            /* Accent color border */
+        }
+
+        #sidebar ul li a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            /* Slightly more prominent background */
+            color: var(--sidebar-text-hover);
+            /* White text */
+            font-weight: 500;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-color);
+            /* Accent color border */
+        }
+
+
+        /* --- End Enhanced Product Card Styling --- */
+        /* --- End Enhanced Product Card Styling --- */
+        /* Card Container */
+        /*.card {
+        background-color: rgb(176, 176, 176);
+        /* Soft warm background 
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: none;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }*/
+
+        /* Hover Effect 
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Card Image
+    .card img {
+        height: 220px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Image Hover Zoom 
+    .card img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Card Body 
+    .card-body {
+        background: linear-gradient(135deg, var(--deep-blue) 0%, var(--saffron) 100%);
+        ;
+        /* Light peach background inside card 
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Card Title 
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 10px;
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* Card Description 
+    .card-text {
+        font-size: 0.95rem;
+        color: white;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* Card Price 
+    .card-text:last-child {
+        font-size: 1.1rem;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* Responsive Image for Smaller Screens 
+    @media (max-width: 768px) {
+        .card img {
+            height: 180px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: white;
+        }
+    }*/
+
+        /* --- WhatsApp Button --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, rgb(25, 128, 78), rgb(15, 136, 58));
+            color: white;
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1000;
+            text-decoration: none;
+            border: 2px solid white;
+            animation: pulse-green 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            background: linear-gradient(135deg, rgb(15, 126, 24), rgb(10, 78, 39));
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(25, 128, 78, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(25, 128, 78, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(25, 128, 78, 0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+
+            /* Sidebar reverts to static */
+            .sidebar-container {
+                width: 100%;
+                flex: none;
+            }
+
+            #sidebar {
+                position: static;
+                /* Color and BG already set */
+                height: auto;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--sidebar-border-dark);
+                /* Keep dark border */
+                margin-bottom: 1.5rem;
+                overflow-y: visible;
+                /* Reset overflow */
+            }
+
+            .main-content-area {
+                margin-left: 0;
+                /* Reset margin */
+                padding: 1.5rem;
+                /* Adjust padding */
+            }
+
+            /* Keep other responsive navbar/grid adjustments */
+            .navbar-nav {
+                margin-top: 1rem;
+                align-items: flex-start !important;
+            }
+
+            .search-form {
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+
+            .admin-login-btn {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .nav-item {
+                width: 100%;
+                margin: 2px 0;
+            }
+
+            .nav-link {
+                padding: 0.75rem;
+            }
+
+            .row-cols-md-2>* {
+                flex: 0 0 auto;
+                width: 50%;
+            }
+
+            .row-cols-xl-3>* {
+                flex: 0 0 auto;
+                width: 33.3333%;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .product-card .card-img-top {
+                height: 200px;
+            }
+
+            .main-content-area {
+                padding: 1rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .row-cols-1>* {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/9328163631" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"
+        title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="../images/krishna.jpg" alt="Murliwala Logo">
+                <div class="navbar-brand-text">
+                    <span class="brand-title">Murliwala</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <form class="d-flex search-form my-2" action="search_p.php" method="GET">
+                            <input class="form-control" type="search" name="search" placeholder="Search..."
+                                aria-label="Search" required>
+                            <button class="btn" type="submit" name="s_data">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="admin-login-btn" title="Admin Login">
+                            <img src="../images/image.png" alt="Admin Login">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container-fluid">
+        <!-- Removed mt-4, body padding handles it -->
+        <div class="row">
+            <!-- Sidebar Column Container -->
+            <aside class="col-lg-3 p-0 sidebar-container">
+                <nav id="sidebar">
+                    <div class="accordion" id="sidebarAccordion">
+                        <!-- Brands Dropdown -->
+                        <div class="accordion-item">
+                            <!-- Removed border-0 -->
+                            <h2 class="accordion-header text-warning" id="brandsHeading">
+                                <!-- Removed bg-dark -->
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#brandsCollapse" aria-expanded="false"
+                                    aria-controls="brandsCollapse">
+                                    <B class="text-warning"><i class="fas fa-tags me-2"></i>BRANDS</B>
+                                </button>
+                            </h2>
+                            <div id="brandsCollapse" class="accordion-collapse collapse "
+                                aria-labelledby="brandsHeading" data-bs-parent="#sidebarAccordion">
+                                <div class="accordion-body">
+                                    <ul class="nav flex-column text-light">
+                                        <!-- Removed bg-dark -->
+                                        <?php getbrand(); ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Categories Dropdown -->
+                        <div class="accordion-item mt-2">
+                            <!-- Removed border-0 -->
+                            <h2 class="accordion-header text-warning" id="categoriesHeading">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoriesCollapse" aria-expanded="false"
+                                    aria-controls="categoriesCollapse">
+                                    <B class="text-warning"><i class="fas fa-list-alt me-2"></i>CATEGORIES</B>
+                                </button>
+                            </h2>
+                            <div id="categoriesCollapse" class="accordion-collapse collapse"
+                                aria-labelledby="categoriesHeading" data-bs-parent="#sidebarAccordion">
+                                <div class="accordion-body">
+                                    <ul class="nav flex-column">
+                                        <?php getcategories(); ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Product Display Area -->
+            <section class="col-lg-9 main-content-area">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                    <?php
+                        getproduct();
+                        // get_unique_categories(); // Likely part of getproduct() logic
+                        // get_unique_brands();    // Likely part of getproduct() logic
+                    ?>
+                </div><!-- End row for products -->
+            </section> <!-- End Product Display Section -->
+
+        </div> <!-- End Row -->
+    </main> <!-- End Main Content -->
+
+    <!-- FOOTER REMOVED -->
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+    <!-- Custom JS -->
+    <script>
+        // --- JAVASCRIPT REMAINS THE SAME ---
+        document.addEventListener('DOMContentLoaded', function () {
+            // Card Animation Logic
+            const cards = document.querySelectorAll('.product-card');
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.transitionDelay = `${index * 50}ms`;
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.05
+                });
+                cards.forEach(card => {
+                    card.classList.add('is-loading');
+                    observer.observe(card);
+                });
+            } else {
+                cards.forEach(card => card.classList.add('is-visible'));
+            }
+
+            // Sidebar Active State & Accordion Logic
+            const currentUrl = window.location.href;
+            const sidebarLinks = document.querySelectorAll('#sidebar ul li a');
+            let activeLinkFound = false;
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkUrl = new URL(link.href, document.baseURI); // Ensure absolute URL for comparison
+                const currentUrlObj = new URL(currentUrl);
+                const linkParams = linkUrl.searchParams;
+                const currentParams = currentUrlObj.searchParams;
+
+                let match = false;
+                // Exact match needed for base shop page or specific product page (if linking directly)
+                if (linkUrl.href === currentUrlObj.href) {
+                    match = true;
+                }
+                // Check if it's a category link and the category matches
+                else if (linkParams.has('category') && linkParams.get('category') === currentParams.get(
+                    'category') && currentParams.get('category') !== null) {
+                    match = true;
+                }
+                // Check if it's a brand link and the brand matches
+                else if (linkParams.has('brand') && linkParams.get('brand') === currentParams.get(
+                    'brand') && currentParams.get('brand') !== null) {
+                    match = true;
+                }
+
+
+                if (match) {
+                    link.classList.add('active');
+                    activeLinkFound = true;
+                    // Find the parent accordion collapse element
+                    const collapseElement = link.closest('.accordion-collapse');
+                    if (collapseElement) {
+                        // Ensure it's properly initialized and not already shown by default Bootstrap behavior if needed
+                        // Using Bootstrap's API to show it if collapsed
+                        const bsCollapse = bootstrap.Collapse.getInstance(collapseElement) || new bootstrap
+                            .Collapse(collapseElement, {
+                                toggle: false
+                            });
+                        if (!collapseElement.classList.contains('show')) {
+                            bsCollapse.show();
+                        }
+                        // Also ensure the corresponding button doesn't have the 'collapsed' class
+                        const button = document.querySelector(`[data-bs-target="#${collapseElement.id}"]`);
+                        if (button && button.classList.contains('collapsed')) {
+                            button.classList.remove('collapsed');
+                            button.setAttribute('aria-expanded', 'true');
+                        }
+                    }
+                }
+            });
+
+            // Optional: Handle base shop.php link if no category/brand active
+            if (!activeLinkFound && window.location.pathname.endsWith('shop.php') && !window.location.search) {
+                // Add logic to highlight a general 'Shop' or 'All Products' link if needed
+                // Example: (Ensure you have a link like this)
+                // const allShopLink = document.querySelector('#sidebar a[href$="shop.php"]');
+                // if(allShopLink && !allShopLink.closest('.accordion-collapse')) { // Check it's not inside a category/brand list
+                //    allShopLink.classList.add('active');
+                // }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MURLIWALA - Spiritual Puja Items</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon (Replace with your actual favicon) -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
+    <style>
+    :root {
+        /* --- Sacred Hindu Theme Colors --- */
+        --saffron: rgb(229, 157, 86);
+        --deep-red: rgb(224, 58, 58);
+        --gold: #FFD700;
+        --turmeric: #F4C430;
+        --forest-green: #228B22;
+        --deep-blue: rgb(52, 52, 202);
+        --light-bg: #fff9f0;
+        --dark-bg: #1a1200;
+        --text-light: #fff9f0;
+        --text-dark: #331a00;
+        --text-muted: #8a7f70;
+        --font-primary: 'Playfair Display', serif;
+        --font-secondary: 'Poppins', sans-serif;
+        --shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+        --shadow-md: 0 .5rem 1rem rgba(0, 0, 0, .15);
+        --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .175);
+        --border-radius: 0.5rem;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: var(--font-secondary);
+        background-color: white;
+        color: var(--text-dark);
+        opacity: 0;
+        animation: fadeIn 0.8s 0.2s ease-in-out forwards;
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-primary);
+        color: var(--deep-blue);
+        font-weight: 600;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--deep-blue);
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: var(--saffron);
+        text-decoration: none;
+    }
+
+    .section-padding {
+        padding: 6rem 0;
+    }
+
+    .section-bg-light {
+        background-color: var(--light-bg);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+        background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-blue) 100%);
+        padding: 0.5rem 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1030;
+        margin-top:-78px;
+    }
+
+    .navbar-brand {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand img {
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        margin-right: 15px;
+    }
+
+    .brand-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        color: var(--text-light);
+    }
+
+    .brand-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        opacity: 0.8;
+        color: var(--text-light);
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.2s ease;
+        border-radius: 4px;
+        margin: 0 2px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+        color: white;
+    }
+
+    .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.15);
+        font-weight: 600;
+        color: white;
+    }
+
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: rgba(26, 35, 126, 0.97);
+        border-radius: var(--border-radius);
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        transition: all 0.2s ease;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateX(3px);
+        color: white;
+    }
+
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .admin-login-btn img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
+        background-color: white;
+    }
+
+    .admin-login-btn:hover img {
+        transform: scale(1.1) rotate(5deg);
+        border-color: white;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- Carousel Section --- */
+    .carousel-section {
+        margin-top: 76px; /* Adjusted for fixed navbar */
+    }
+
+    .carousel-item {
+        height: 75vh;
+        min-height: 500px;
+        max-height: 700px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        filter: brightness(0.65);
+        transition: transform 6s ease-out;
+    }
+
+    .carousel-caption {
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        width: 80%;
+        max-width: 750px;
+        position: absolute;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: var(--text-light);
+    }
+
+    .carousel-caption h1.car {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        color: white;
+    }
+
+    .carousel-caption p {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+    }
+
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 6px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .carousel-indicators .active {
+        background-color: white;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-size: 60%;
+    }
+
+    /* --- Buttons --- */
+    .btn-spiritual {
+        background: linear-gradient(135deg, var(--deep-blue) 0%, var(--saffron) 100%);
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.95rem;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .btn-spiritual:hover {
+        background: linear-gradient(135deg, var(--deep-red) 0%, var(--saffron) 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
+    }
+
+    .btn-outline-spiritual {
+        border-color: var(--deep-blue);
+        color: var(--deep-blue);
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.95rem;
+        background-color: transparent;
+    }
+
+    .btn-outline-spiritual:hover {
+        background-color: var(--deep-blue);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* --- About Section --- */
+    .about-section {
+        background: linear-gradient(135deg,
+                rgba(0, 60, 255, 0.9) 0%,
+                rgba(204, 0, 0, 0.85) 100%),
+            url('images/murli2.png') center/cover no-repeat;
+        color: var(--text-light);
+        margin-top: 0;
+        padding: 6rem 0;
+    }
+
+    .about-img {
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .about-img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
+    }
+
+    .about-section .lead {
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1.5rem;
+    }
+
+    /* --- Category Section --- */
+    .category-section {
+        background: linear-gradient(135deg,
+                rgba(255, 153, 51, 0.1) 0%,
+                rgba(34, 139, 34, 0.15) 100%);
+    }
+
+    .category-card {
+        background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-red) 100%);
+        border-radius: var(--border-radius);
+        text-align: center;
+        padding: 2rem 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid #eee;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .category-card:hover {
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 249, 240, 0.98) 100%);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(255, 153, 51, 0.2);
+    }
+
+    .category-card .icon-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem auto;
+        background-color: var(--deep-blue);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .category-card:hover .icon-container {
+        background-color: var(--deep-red);
+        transform: scale(1.05);
+    }
+
+    .category-card h5 {
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        color: var(--deep-blue);
+    }
+
+    .category-card p {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .category-card .btn-explore {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+        border-radius: 20px;
+        background-color: transparent;
+        border: 1px solid var(--deep-blue);
+        color: var(--deep-blue);
+        transition: all 0.3s ease;
+        text-transform: capitalize;
+    }
+
+    .category-card:hover .btn-explore {
+        background-color: var(--deep-blue);
+        color: white;
+    }
+
+    /* --- Testimonials --- */
+    .testimonial-section {
+        background: linear-gradient(135deg,
+                rgba(0, 0, 139, 0.85) 0%,
+                rgba(0, 128, 128, 0.9) 100%);
+        color: var(--text-light);
+    }
+
+    .testimonial-card {
+        background-color: rgba(255, 255, 255, 0.97);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        color: var(--text-dark);
+        box-shadow: var(--shadow-md);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-card .stars {
+        color: #FFC107;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .testimonial-card .quote {
+        font-size: 1rem;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+        color: var(--text-muted);
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .testimonial-card .quote::before {
+        content: '\f10d';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.2rem;
+        color: var(--deep-blue);
+        opacity: 0.8;
+    }
+
+    .testimonial-card .author {
+        font-weight: 600;
+        color: var(--deep-blue);
+        margin-top: auto;
+        font-size: 0.95rem;
+        text-align: right;
+    }
+
+    /* --- Newsletter Section --- */
+    .newsletter-section {
+        background-color: var(--deep-blue);
+        padding: 4rem 0;
+        color: var(--text-light);
+    }
+
+    .newsletter-section h2 {
+        color: white;
+    }
+
+    .newsletter-form .form-control {
+        height: 55px;
+        border-radius: 30px;
+        border: none;
+        padding: 0 25px;
+        font-size: 1rem;
+    }
+
+    .newsletter-form .btn {
+        height: 55px;
+        border-radius: 30px;
+        padding: 0 35px;
+        background-color: var(--saffron);
+        color: white;
+        font-weight: 600;
+        border: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .newsletter-form .btn:hover {
+        background-color: var(--deep-red);
+        color: white;
+    }
+
+    /* --- Footer --- */
+    footer {
+        background-color: var(--dark-bg);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 6rem 0 2rem;
+    }
+
+    .footer-links h5 {
+        font-family: var(--font-secondary);
+        color: var(--saffron);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+    }
+
+    .footer-about-text {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-contact-info li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-contact-info i {
+        color: var(--saffron);
+        margin-right: 12px;
+        margin-top: 4px;
+        width: 18px;
+        text-align: center;
+    }
+
+    .social-icons {
+        margin-top: 1.5rem;
+    }
+
+    .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 50%;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-icons a:hover {
+        background-color: var(--deep-blue);
+        color: white;
+        transform: translateY(-3px) scale(1.05);
+        border-color: var(--deep-blue);
+    }
+
+    .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+    }
+
+    /* --- WhatsApp Button --- */
+    .whatsapp-button {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white;
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        text-decoration: none;
+        border: 2px solid white;
+        animation: pulse-green 2s infinite;
+    }
+
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    @keyframes pulse-green {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+        }
+        70% {
+            box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+
+    /* --- Animations --- */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .delay-1 {
+        transition-delay: 0.1s;
+    }
+
+    .delay-2 {
+        transition-delay: 0.2s;
+    }
+
+    .delay-3 {
+        transition-delay: 0.3s;
+    }
+
+    .delay-4 {
+        transition-delay: 0.4s;
+    }
+
+    .delay-5 {
+        transition-delay: 0.5s;
+    }
+
+    .delay-6 {
+        transition-delay: 0.6s;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1199.98px) {
+        .carousel-item {
+            height: 65vh;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        .navbar-nav {
+            margin-top: 1rem;
+            align-items: flex-start !important;
+        }
+
+        .search-form {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .admin-login-btn {
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .nav-item {
+            width: 100%;
+            margin: 2px 0;
+        }
+
+        .nav-link {
+            padding: 0.75rem;
+        }
+
+        .carousel-item {
+            height: 60vh;
+            min-height: 400px;
+        }
+
+        .carousel-caption {
+            width: 90%;
+            bottom: 15%;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .carousel-item {
+            height: 50vh;
+            min-height: 350px;
+        }
+
+        .carousel-caption h1.car {
+            font-size: 1.8rem;
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .about-section, 
+        .category-section,
+        .testimonial-section {
+            padding: 4rem 0;
+        }
+
+        .footer-links h5 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-contact-info i {
+            margin-right: 8px;
+        }
+
+        .social-icons {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .social-icons a {
+            margin: 0 8px;
+        }
+
+        .category-card {
+            padding: 1.5rem 1rem;
+        }
+
+        .whatsapp-button {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            bottom: 20px;
+            left: 20px;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .carousel-item {
+            height: 45vh;
+            min-height: 300px;
+        }
+
+        .carousel-caption {
+            padding: 1rem;
+            bottom: 10%;
+        }
+
+        .carousel-caption h1.car {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-caption p {
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .btn-spiritual {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+
+        .section-padding {
+            padding: 3rem 0;
+        }
+
+        .about-section .row {
+            flex-direction: column-reverse;
+        }
+
+        .about-img {
+            margin-top: 1.5rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .brand-title {
+            font-size: 1rem;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/krishna.jpg" alt="Murliwala Logo">
+                <div class="navbar-brand-text">
+                    <span class="brand-title">Murliwala</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="login.html" class="admin-login-btn" title="Admin Login">
+                            <img src="images/image.png" alt="Admin Login">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section" id="home">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="images/coru1.jpg" class="d-block w-100" alt="Sacred spiritual supplies banner">
+                    <div class="carousel-caption">
+                        <h1 class="car animate-on-scroll">Sacred Supplies for Your Spiritual Journey</h1>
+                        <p class="animate-on-scroll delay-1">Discover authentic puja items, spiritual books, and
+                            handcrafted essentials sourced with devotion.</p>
+                        <a href="./user/shop.php" class="btn btn-spiritual btn-lg animate-on-scroll delay-2">Shop Now</a>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="images/item2.png" class="d-block w-100" alt="Peaceful temple background">
+                    <div class="carousel-caption">
+                        <h1 class="car">Find Inner Peace & Devotion</h1>
+                        <p>Explore meditation aids, divine idols, and pure incense designed to bring tranquility to your
+                            sacred space.</p>
+                        <a href="./user/shop.php" class="btn btn-spiritual btn-lg">Explore Collection</a>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="images/coru3.webp" class="d-block w-100" alt="Traditional puja items arrangement">
+                    <div class="carousel-caption">
+                        <h1 class="car">Authentic Puja Essentials</h1>
+                        <p>High-quality, traditionally sourced items for your rituals. Connect deeply with divine
+                            energies.</p>
+                        <a href="./user/shop.php" class="btn btn-spiritual btn-lg">Discover Essentials</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 animate-on-scroll">
+                    <img src="images/murli2.png" alt="Inside the Divine Puja Store or relevant spiritual setting"
+                        class="img-fluid about-img">
+                </div>
+                <div class="col-lg-6 animate-on-scroll delay-1">
+                    <h2 class="mb-4">Our Spiritual Mission</h2>
+                    <p class="lead">At Murliwala, we believe authentic spiritual tools are conduits to a deeper
+                        connection with the divine.</p>
+                    <p>Founded on the principles of purity and tradition, our mission is to provide high-quality,
+                        ethically sourced puja items from revered locations across India. Each product is carefully
+                        selected for its spiritual significance and craftsmanship.</p>
+                    <p>We partner directly with artisans and spiritual communities, ensuring every item supports
+                        traditional practices and brings genuine sacred energy to your home and rituals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Category Section -->
+    <section class="category-section section-padding section-bg-light">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="mb-3">Explore Our Sacred Collections</h2>
+                <p class="lead text-muted">Find everything you need for your spiritual practice, thoughtfully curated.
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll w-100">
+                        <div class="icon-container"><i class="fas fa-om"></i></div>
+                        <div>
+                            <h5>Puja Samagri</h5>
+                            <p>Complete range of essential items for daily rituals, festivals, and special ceremonies.
+                            </p>
+                        </div>
+                        <a href="./user/shop.php?category=puja" class="btn btn-explore mt-auto"><b>Explore Items</b></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll delay-1 w-100">
+                        <div class="icon-container"><i class="fas fa-place-of-worship"></i></div>
+                        <div>
+                            <h5>Murtis & Idols</h5>
+                            <p>Exquisitely crafted idols of deities in various materials to grace your home temple.</p>
+                        </div>
+                        <a href="./user/shop.php?category=idols" class="btn btn-explore mt-auto"><b>Discover Idols</b></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll delay-2 w-100">
+                        <div class="icon-container"><i class="fas fa-book-open"></i></div>
+                        <div>
+                            <h5>Spiritual Books</h5>
+                            <p>Timeless scriptures, philosophical texts, and insightful guides for spiritual growth.</p>
+                        </div>
+                        <a href="./user/shop.php?category=books" class="btn btn-explore mt-auto"><b>Browse Books</b></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll delay-3 w-100">
+                        <div class="icon-container"><i class="fas fa-spa"></i></div>
+                        <div>
+                            <h5>Meditation Aids</h5>
+                            <p>Malas, cushions, singing bowls, and more to enhance your meditation and mindfulness
+                                practice.</p>
+                        </div>
+                        <a href="./user/shop.php?category=meditation" class="btn btn-explore mt-auto"><b>Find Aids</b></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll delay-4 w-100">
+                        <div class="icon-container"><i class="fas fa-wind"></i></div>
+                        <div>
+                            <h5>Incense & Dhoop</h5>
+                            <p>Pure, aromatic incense sticks and dhoop cones to purify spaces and uplift the senses.</p>
+                        </div>
+                        <a href="./user/shop.php?category=incense" class="btn btn-explore mt-auto"><b>Shop Fragrances</b></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="category-card animate-on-scroll delay-5 w-100">
+                        <div class="icon-container"><i class="fas fa-tshirt"></i></div>
+                        <div>
+                            <h5>Deity Vastra</h5>
+                            <p>Beautifully designed and adorned clothing (vastra) for dressing your beloved deities.</p>
+                        </div>
+                        <a href="./user/shop.php?category=vastra" class="btn btn-explore mt-auto"><b>View Vastra</b></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 animate-on-scroll delay-6">
+                <a href="./user/shop.php" class="btn btn-spiritual btn-lg">View All Sacred Items</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonial-section section-padding">
+        <div class="container">
+            <div class="text-center mb-5 animate-on-scroll">
+                <h2 class="mb-3">Devotee Experiences</h2>
+                <p class="lead" style="color: rgba(255,255,255,0.85);">Hear from those who've enriched their practice.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 d-flex">
+                    <div class="testimonial-card animate-on-scroll w-100">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"The quality of the puja items I received was exceptional. The brass diya has
+                            such a divine presence during my morning prayers."</p>
+                        <p class="author">- Priya S., Surat</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex">
+                    <div class="testimonial-card animate-on-scroll delay-1 w-100">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="quote">"Truly authentic products. My rudraksha mala arrived beautifully packaged and
+                            its energy feels powerful during japa."</p>
+                        <p class="author">- Rajiv P., Surat</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex">
+                    <div class="testimonial-card animate-on-scroll delay-2 w-100">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="quote">"The marble Krishna idol I ordered is exquisite and exactly as described. It
+                            has become the heart of my home temple. Very grateful."</p>
+                        <p class="author">- Ananya D., Surat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-primary">About Murliwala</h5>
+                    <p class="footer-about-text">Your trusted source for authentic spiritual supplies. We provide sacred
+                        items sourced with reverence for worship, meditation, and enriching your spiritual path.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/9328163631" target="_blank" title="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="./user/shop.php">Shop</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-6 footer-links">
+                    <h5>Sacred Items</h5>
+                    <ul>
+                        <li><a href="./user/shop.php?category=puja samagri">Puja Samagri</a></li>
+                        <li><a href="./user/shop.php?category=mandirs">Mandirs</a></li>
+                        <li><a href="./user/shop.php?category=books">Spiritual Books</a></li>
+                        <li><a href="./user/shop.php?category=meditation">Meditation Aids</a></li>
+                        <li><a href="./user/shop.php?category=eatery">Eatery</a></li>
+                        <li><a href="./user/shop.php?category=dhoop">Agarbatti & Dhoop</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-12 footer-links">
+                    <h5>Contact Us</h5>
+                    <ul class="footer-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span>123 Sacred Street, Surat, Gujarat</span></li>
+                        <li><i class="fas fa-phone"></i> <span><a href="tel:+919924046884">+91 93281 63631</a></span>
+                        </li>
+                        <li><i class="fas fa-envelope"></i> <span><a
+                                    href="mailto:info@murliwalapuja.com">info@murliwalapuja.com</a></span></li>
+                        <li><i class="fas fa-clock"></i> <span>Mon - Sat: 10:00 AM - 7:00 PM</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© <span id="currentYear"></span> Murliwala. All Rights Reserved.</p>
+                <p>Designed & Powered by <a href="https://www.instagram.com/logic_minds_by_parii/" target="_blank"
+                        rel="noopener noreferrer"><b class="text-primary">Logic Minds by Pari</b></a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/9328163631" target="_blank" class="whatsapp-button" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Intersection Observer for animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        } else {
+            animatedElements.forEach(element => {
+                element.classList.add('is-visible');
+            });
+        }
+
+        // WhatsApp button scroll behavior
+        const whatsappButton = document.querySelector('.whatsapp-button');
+        let lastScrollPosition = window.pageYOffset;
+        const buttonBaseOffset = 25;
+
+        window.addEventListener('scroll', function() {
+            const currentScrollPosition = window.pageYOffset;
+
+            if (currentScrollPosition > lastScrollPosition) {
+                whatsappButton.style.bottom =
+                    `${Math.max(10, buttonBaseOffset - (currentScrollPosition * 0.1))}px`;
+            } else {
+                whatsappButton.style.bottom =
+                    `${Math.min(buttonBaseOffset, buttonBaseOffset + (lastScrollPosition - currentScrollPosition) * 0.1)}px`;
+            }
+
+            lastScrollPosition = currentScrollPosition;
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset === 0) {
+                whatsappButton.style.bottom = `${buttonBaseOffset}px`;
+            }
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#' && document.querySelector(this.getAttribute('href'))) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>
