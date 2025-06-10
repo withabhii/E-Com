@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
 // Ensure session_start() is called if you plan to use sessions (e.g., for user login status, cart)
 // session_start();
 include('../includes/conn.php');
 include('../function/comm_fun.php'); // Make sure this file contains getbrand() and getcategories() functions that ECHO <li><a>...</a></li> HTML
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,6 +92,8 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
             min-height: 100vh;
             padding-top: var(--navbar-height);
             line-height: 1.7;
+            /* MODIFIED: Ensure body transition is smooth for overflow property */
+            transition: overflow 0.3s ease;
         }
 
         main {
@@ -137,9 +139,7 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
             top: 0;
             width: 100%;
             z-index: 1030;
-            /* Ensure navbar is above fixed sidebar */
             height: var(--navbar-height);
-            /* Explicit height */
         }
 
         .navbar-brand {
@@ -158,21 +158,10 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
         }
 
         .navbar-brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-title {
+            font-family: var(--font-primary); /* MODIFIED: Using primary font for brand */
             font-weight: 600;
             font-size: 1.2rem;
             line-height: 1.2;
-            color: var(--text-light);
-        }
-
-        .brand-subtitle {
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            opacity: 0.8;
             color: var(--text-light);
         }
 
@@ -197,34 +186,6 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
             background-color: rgba(255, 255, 255, 0.15);
             font-weight: 600;
             color: white;
-        }
-
-        .dropdown-menu {
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            background-color: rgba(26, 35, 126, 0.97);
-            border-radius: var(--border-radius);
-        }
-
-        .dropdown-item {
-            padding: 0.5rem 1rem;
-            transition: all 0.2s ease;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .dropdown-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(3px);
-            color: white;
-        }
-
-        .user-dropdown {
-            transition: all 0.3s ease;
-        }
-
-        .user-dropdown:hover img {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
 
         .user-avatar {
@@ -302,104 +263,68 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
             border-color: white;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
+        
+        /* ADDED: Styles for the hamburger menu button */
+        .navbar-toggler {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-toggler:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+        }
 
-
-
+        /* --- Sidebar Styles --- */
         #sidebar {
-            /* --- Default styles (Small Screens) --- */
             background: linear-gradient(135deg, var(--deep-blue) 10%, var(--accent-color) 100%);
-            /* Black background */
             color: var(--sidebar-text-primary);
-            /* Light text */
             padding: 1rem;
             transition: all 0.3s ease;
             position: static;
-            /* Static by default */
             width: 100%;
             height: auto;
             border-bottom: 1px solid var(--sidebar-border-dark);
-            /* Dark border */
             margin-bottom: 1.5rem;
             z-index: 1020;
-            /* Below navbar */
         }
 
-        /* --- Fixed Sidebar (Large Screens) --- */
-        @media (min-width: 992px) {
-            .sidebar-container {
-                flex: 0 0 0;
-                width: 0;
-            }
-
-            #sidebar {
-                position: fixed;
-                top: var(--navbar-height);
-                left: 0;
-                width: var(--sidebar-width-lg);
-                height: calc(100vh - var(--navbar-height));
-                overflow-y: auto;
-                border-right: 1px solid var(--sidebar-border-dark);
-                /* Dark border on right */
-                border-bottom: none;
-                /* No bottom border when fixed */
-                margin-bottom: 0;
-                padding: 1.5rem 1rem;
-            }
-
-            .main-content-area {
-                margin-left: var(--sidebar-width-lg);
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* --- Sidebar Content Styling (Adjusted for Dark BG) --- */
         #sidebar .accordion-item {
             background-color: transparent;
-            /* Ensure item background is transparent */
             border-color: transparent;
-            /* Ensure item border is transparent if any */
         }
-
-
 
         #sidebar .accordion-header button {
             font-size: 1.1rem;
             font-family: var(--font-primary);
             color: var(--sidebar-text-hover) !important;
-            /* White text */
             font-weight: 600;
             padding: 0.75rem 1rem;
             text-align: left;
             border: none;
             background-color: transparent !important;
-            /* Ensure transparent */
             box-shadow: none !important;
             width: 100%;
             border-bottom: 1px solid var(--sidebar-border-dark);
-            /* Dark separator */
             transition: background-color 0.2s ease;
-            /* Add transition for hover/focus */
         }
 
         #sidebar .accordion-header button:hover,
         #sidebar .accordion-header button:focus {
             background-color: rgba(255, 255, 255, 0.03) !important;
-            /* Subtle hover/focus */
         }
 
         #sidebar .accordion-header button:not(.collapsed) {
-            /* Style when open */
             background-color: rgba(255, 255, 255, 0.05) !important;
-            /* Subtle highlight */
             border-bottom-color: var(--accent-color);
-            /* Use accent for open */
         }
 
         #sidebar .accordion-header button::after {
-            /* Style accordion icon */
             filter: brightness(0) invert(1);
-            /* Make arrow white */
         }
 
         #sidebar ul {
@@ -410,9 +335,7 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
         #sidebar .accordion-body {
             padding: 0.5rem 0 0.5rem 1rem !important;
-            /* Removed background-color here as well */
             border: none !important;
-            /* Remove potential borders from body */
         }
 
         #sidebar ul li {
@@ -422,8 +345,6 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
         #sidebar ul li a {
             text-decoration: none;
             color: orange;
-            /* Use a more specific color variable if needed */
-            /* Light text for links */
             font-weight: 400;
             display: block;
             padding: 0.5rem 0.75rem;
@@ -436,120 +357,18 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
         #sidebar ul li a:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            /* Slightly lighter background on hover */
             color: var(--sidebar-text-hover);
-            /* White text on hover */
             padding-left: 1rem;
             border-left: 3px solid var(--accent-color);
-            /* Accent color border */
         }
 
         #sidebar ul li a.active {
             background-color: rgba(255, 255, 255, 0.15);
-            /* Slightly more prominent background */
             color: var(--sidebar-text-hover);
-            /* White text */
             font-weight: 500;
             padding-left: 1rem;
             border-left: 3px solid var(--accent-color);
-            /* Accent color border */
         }
-
-
-        /* --- End Enhanced Product Card Styling --- */
-        /* --- End Enhanced Product Card Styling --- */
-        /* Card Container */
-        /*.card {
-        background-color: rgb(176, 176, 176);
-        /* Soft warm background 
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        border: none;
-        overflow: hidden;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }*/
-
-        /* Hover Effect 
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Card Image
-    .card img {
-        height: 220px;
-        object-fit: cover;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        transition: transform 0.3s ease;
-    }
-
-    /* Image Hover Zoom 
-    .card img:hover {
-        transform: scale(1.05);
-    }
-
-    /* Card Body 
-    .card-body {
-        background: linear-gradient(135deg, var(--deep-blue) 0%, var(--saffron) 100%);
-        ;
-        /* Light peach background inside card 
-        padding: 20px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    /* Card Title 
-    .card-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        margin-bottom: 10px;
-        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    /* Card Description 
-    .card-text {
-        font-size: 0.95rem;
-        color: white;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    /* Card Price 
-    .card-text:last-child {
-        font-size: 1.1rem;
-        color: rgb(255, 255, 255);
-        font-weight: bold;
-        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    /* Responsive Image for Smaller Screens 
-    @media (max-width: 768px) {
-        .card img {
-            height: 180px;
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .card-title {
-            font-size: 1rem;
-        }
-
-        .card-text {
-            font-size: 0.9rem;
-            color: white;
-        }
-    }*/
 
         /* --- WhatsApp Button --- */
         .whatsapp-float {
@@ -581,23 +400,110 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
         }
 
         @keyframes pulse-green {
-            0% {
-                box-shadow: 0 0 0 0 rgba(25, 128, 78, 0.5);
+            0% { box-shadow: 0 0 0 0 rgba(25, 128, 78, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(25, 128, 78, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(25, 128, 78, 0); }
+        }
+
+        /* --- Fixed Sidebar (Large Screens) --- */
+        @media (min-width: 992px) {
+            .sidebar-container {
+                flex: 0 0 var(--sidebar-width-lg);
+                width: var(--sidebar-width-lg);
             }
 
-            70% {
-                box-shadow: 0 0 0 12px rgba(25, 128, 78, 0);
+            #sidebar {
+                position: fixed;
+                top: var(--navbar-height);
+                left: 0;
+                width: var(--sidebar-width-lg);
+                height: calc(100vh - var(--navbar-height));
+                overflow-y: auto;
+                border-right: 1px solid var(--sidebar-border-dark);
+                border-bottom: none;
+                margin-bottom: 0;
+                padding: 1.5rem 1rem;
             }
 
-            100% {
-                box-shadow: 0 0 0 0 rgba(25, 128, 78, 0);
+            .main-content-area {
+                margin-left: var(--sidebar-width-lg);
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
         }
 
-        /* Responsive adjustments */
+        /* --- MODIFIED: Responsive adjustments for Mobile/Tablet --- */
         @media (max-width: 991.98px) {
+            /* --- START: Fullscreen Mobile Navigation --- */
+            .navbar-collapse {
+                position: fixed;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100vw;
+                height: calc(100vh - var(--navbar-height));
+                background: linear-gradient(135deg, var(--deep-blue) 0%, var(--saffron) 100%);
+                z-index: 1050; /* Above other content */
+                padding: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0.35s ease, visibility 0.35s ease;
+                opacity: 0;
+                visibility: hidden;
+            }
 
-            /* Sidebar reverts to static */
+            .navbar-collapse.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .navbar-collapse.collapsing {
+                height: calc(100vh - var(--navbar-height)) !important;
+                overflow: hidden;
+                transition: opacity 0.35s ease, visibility 0.35s ease;
+            }
+
+            .navbar-nav {
+                margin-top: 0;
+                align-items: center !important;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .nav-item {
+                width: 100%;
+                margin: 0;
+            }
+
+            .nav-link {
+                padding: 0.8rem 1rem;
+                font-size: 1.8rem;
+                font-family: var(--font-primary);
+                font-weight: 500;
+                letter-spacing: 1px;
+                color: white !important;
+            }
+            
+            .nav-link:hover, .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                transform: none;
+            }
+
+            .admin-login-btn {
+                margin: 1.5rem 0 0 0;
+                padding: 0.5rem;
+            }
+            .admin-login-btn img {
+                height: 50px;
+                width: 50px;
+            }
+            /* --- END: Fullscreen Mobile Navigation --- */
+
+            /* --- Sidebar reverts to static (Original styles) --- */
             .sidebar-container {
                 width: 100%;
                 flex: none;
@@ -605,48 +511,35 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
             #sidebar {
                 position: static;
-                /* Color and BG already set */
                 height: auto;
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid var(--sidebar-border-dark);
-                /* Keep dark border */
                 margin-bottom: 1.5rem;
                 overflow-y: visible;
-                /* Reset overflow */
             }
 
             .main-content-area {
                 margin-left: 0;
-                /* Reset margin */
                 padding: 1.5rem;
-                /* Adjust padding */
             }
 
-            /* Keep other responsive navbar/grid adjustments */
-            .navbar-nav {
-                margin-top: 1rem;
-                align-items: flex-start !important;
-            }
-
-            .search-form {
-                margin-top: 0.5rem;
-                margin-bottom: 0.5rem;
-                width: 100%;
-            }
-
-            .admin-login-btn {
-                margin-left: 0;
+            #sidebar .accordion-body {
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 0.5rem;
                 margin-top: 0.5rem;
             }
 
-            .nav-item {
-                width: 100%;
-                margin: 2px 0;
+            #sidebar ul li a {
+                color: white;
+                padding: 0.75rem 1rem;
+                margin: 0.25rem 0;
             }
 
-            .nav-link {
-                padding: 0.75rem;
+            #sidebar ul li a:hover,
+            #sidebar ul li a.active {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: white;
             }
 
             .row-cols-md-2>* {
@@ -661,10 +554,6 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
         }
 
         @media (max-width: 767.98px) {
-            .product-card .card-img-top {
-                height: 200px;
-            }
-
             .main-content-area {
                 padding: 1rem;
             }
@@ -696,10 +585,8 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="../images/krishna.jpg" alt="Murliwala Logo">
-                <div class="navbar-brand-text">
-                    <span class="brand-title">Murliwala</span>
-                </div>
+                <img src="images/krishna.jpg" alt="Murliwala Logo">
+                <span class="navbar-brand-text">Murliwala</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -710,8 +597,9 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <form class="d-flex search-form my-2" action="search_p.php" method="GET">
+                    <!-- MODIFIED: Added display classes to hide search on mobile for a cleaner menu -->
+                    <li class="nav-item ms-lg-2 d-none d-lg-block">
+                        <form class="d-flex search-form" action="search_p.php" method="GET">
                             <input class="form-control" type="search" name="search" placeholder="Search..."
                                 aria-label="Search" required>
                             <button class="btn" type="submit" name="s_data">
@@ -721,7 +609,7 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                     </li>
                     <li class="nav-item">
                         <a href="login.html" class="admin-login-btn" title="Admin Login">
-                            <img src="../images/image.png" alt="Admin Login">
+                            <img src="images/image.png" alt="Admin Login">
                         </a>
                     </li>
                 </ul>
@@ -731,7 +619,6 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
     <!-- Main Content Area -->
     <main class="container-fluid">
-        <!-- Removed mt-4, body padding handles it -->
         <div class="row">
             <!-- Sidebar Column Container -->
             <aside class="col-lg-3 p-0 sidebar-container">
@@ -739,20 +626,17 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                     <div class="accordion" id="sidebarAccordion">
                         <!-- Brands Dropdown -->
                         <div class="accordion-item">
-                            <!-- Removed border-0 -->
                             <h2 class="accordion-header text-warning" id="brandsHeading">
-                                <!-- Removed bg-dark -->
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#brandsCollapse" aria-expanded="false"
                                     aria-controls="brandsCollapse">
-                                    <B class="text-warning"><i class="fas fa-tags me-2"></i>BRANDS</B>
+                                    <b class="text-warning"><i class="fas fa-tags me-2"></i>BRANDS</b>
                                 </button>
                             </h2>
-                            <div id="brandsCollapse" class="accordion-collapse collapse "
+                            <div id="brandsCollapse" class="accordion-collapse collapse"
                                 aria-labelledby="brandsHeading" data-bs-parent="#sidebarAccordion">
                                 <div class="accordion-body">
                                     <ul class="nav flex-column text-light">
-                                        <!-- Removed bg-dark -->
                                         <?php getbrand(); ?>
                                     </ul>
                                 </div>
@@ -761,12 +645,11 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
                         <!-- Categories Dropdown -->
                         <div class="accordion-item mt-2">
-                            <!-- Removed border-0 -->
                             <h2 class="accordion-header text-warning" id="categoriesHeading">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#categoriesCollapse" aria-expanded="false"
                                     aria-controls="categoriesCollapse">
-                                    <B class="text-warning"><i class="fas fa-list-alt me-2"></i>CATEGORIES</B>
+                                    <b class="text-warning"><i class="fas fa-list-alt me-2"></i>CATEGORIES</b>
                                 </button>
                             </h2>
                             <div id="categoriesCollapse" class="accordion-collapse collapse"
@@ -787,16 +670,12 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
                     <?php
                         getproduct();
-                        // get_unique_categories(); // Likely part of getproduct() logic
-                        // get_unique_brands();    // Likely part of getproduct() logic
                     ?>
                 </div><!-- End row for products -->
             </section> <!-- End Product Display Section -->
 
         </div> <!-- End Row -->
     </main> <!-- End Main Content -->
-
-    <!-- FOOTER REMOVED -->
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -805,9 +684,17 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
 
     <!-- Custom JS -->
     <script>
-        // --- JAVASCRIPT REMAINS THE SAME ---
         document.addEventListener('DOMContentLoaded', function () {
-            // Card Animation Logic
+            // --- ADDED: Prevent body scrolling when mobile menu is open ---
+            const navbarCollapse = document.getElementById('navbarNav');
+            navbarCollapse.addEventListener('show.bs.collapse', function () {
+                document.body.style.overflow = 'hidden';
+            });
+            navbarCollapse.addEventListener('hide.bs.collapse', function () {
+                document.body.style.overflow = 'auto';
+            });
+
+            // Card Animation Logic (Original)
             const cards = document.querySelectorAll('.product-card');
             if ("IntersectionObserver" in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -829,51 +716,36 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                 cards.forEach(card => card.classList.add('is-visible'));
             }
 
-            // Sidebar Active State & Accordion Logic
+            // Sidebar Active State & Accordion Logic (Original)
             const currentUrl = window.location.href;
             const sidebarLinks = document.querySelectorAll('#sidebar ul li a');
             let activeLinkFound = false;
 
             sidebarLinks.forEach(link => {
                 link.classList.remove('active');
-                const linkUrl = new URL(link.href, document.baseURI); // Ensure absolute URL for comparison
+                const linkUrl = new URL(link.href, document.baseURI); 
                 const currentUrlObj = new URL(currentUrl);
                 const linkParams = linkUrl.searchParams;
                 const currentParams = currentUrlObj.searchParams;
 
                 let match = false;
-                // Exact match needed for base shop page or specific product page (if linking directly)
                 if (linkUrl.href === currentUrlObj.href) {
                     match = true;
-                }
-                // Check if it's a category link and the category matches
-                else if (linkParams.has('category') && linkParams.get('category') === currentParams.get(
-                    'category') && currentParams.get('category') !== null) {
+                } else if (linkParams.has('category') && linkParams.get('category') === currentParams.get('category') && currentParams.get('category') !== null) {
+                    match = true;
+                } else if (linkParams.has('brand') && linkParams.get('brand') === currentParams.get('brand') && currentParams.get('brand') !== null) {
                     match = true;
                 }
-                // Check if it's a brand link and the brand matches
-                else if (linkParams.has('brand') && linkParams.get('brand') === currentParams.get(
-                    'brand') && currentParams.get('brand') !== null) {
-                    match = true;
-                }
-
 
                 if (match) {
                     link.classList.add('active');
                     activeLinkFound = true;
-                    // Find the parent accordion collapse element
                     const collapseElement = link.closest('.accordion-collapse');
                     if (collapseElement) {
-                        // Ensure it's properly initialized and not already shown by default Bootstrap behavior if needed
-                        // Using Bootstrap's API to show it if collapsed
-                        const bsCollapse = bootstrap.Collapse.getInstance(collapseElement) || new bootstrap
-                            .Collapse(collapseElement, {
-                                toggle: false
-                            });
+                        const bsCollapse = bootstrap.Collapse.getInstance(collapseElement) || new bootstrap.Collapse(collapseElement, { toggle: false });
                         if (!collapseElement.classList.contains('show')) {
                             bsCollapse.show();
                         }
-                        // Also ensure the corresponding button doesn't have the 'collapsed' class
                         const button = document.querySelector(`[data-bs-target="#${collapseElement.id}"]`);
                         if (button && button.classList.contains('collapsed')) {
                             button.classList.remove('collapsed');
@@ -882,16 +754,6 @@ include('../function/comm_fun.php'); // Make sure this file contains getbrand() 
                     }
                 }
             });
-
-            // Optional: Handle base shop.php link if no category/brand active
-            if (!activeLinkFound && window.location.pathname.endsWith('shop.php') && !window.location.search) {
-                // Add logic to highlight a general 'Shop' or 'All Products' link if needed
-                // Example: (Ensure you have a link like this)
-                // const allShopLink = document.querySelector('#sidebar a[href$="shop.php"]');
-                // if(allShopLink && !allShopLink.closest('.accordion-collapse')) { // Check it's not inside a category/brand list
-                //    allShopLink.classList.add('active');
-                // }
-            }
         });
     </script>
 </body>
